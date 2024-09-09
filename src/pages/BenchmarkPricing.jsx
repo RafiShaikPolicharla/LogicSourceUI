@@ -1,8 +1,12 @@
+import { Box } from "@mui/material"
+import BenchmarkPricing from "../components/BenchmarkPricing";
 
-const BenchmarkPricing = () => {
+const BenchmarkPricingPage = () => {
   return (
-    <div>BenchmarkPricing</div>
+    <Box>
+      <BenchmarkPricing />
+    </Box>
   )
 }
 
-export default BenchmarkPricing
+export default BenchmarkPricingPage

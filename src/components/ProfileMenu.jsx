@@ -9,7 +9,7 @@ import Logout from '@mui/icons-material/Logout';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {  Button } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import UserImage from "../assets/user_Image.jpg";
+import UserImage from "../assets/user_Image.png";
 import { withStyles } from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 const styles = theme => ({
@@ -49,11 +49,11 @@ export default function ProfileMenu({searchBarClicked}) {
 
     return (
         <React.Fragment>
-            <Box className={`${searchBarClicked ? "navbar-profile" : ""}`} sx={{ display: "flex", alignItems: "center", gap: "20px", color: "black" }}>
+            <Box className={`${searchBarClicked ? "navbar-profile" : ""}`} sx={{ display: "flex", alignItems: "center", gap: {xs:"20px", lg: "41px"}, color: "black" }}>
 
                 <BadgeIcon />
                 <Box sx={{position: "relative", display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                    <Tooltip title="Account settings" componentsProps={{
+                    {/* <Tooltip title="Account settings" componentsProps={{
                         tooltip: {
                             sx: {
                                 bgcolor: '#fff',
@@ -62,7 +62,7 @@ export default function ProfileMenu({searchBarClicked}) {
                                 },
                             },
                         },
-                    }} >
+                    }} > */}
                         <Button
                             id="profile-customized-button"
                             aria-controls={open ? 'profile-customized-menu' : undefined}
@@ -73,7 +73,7 @@ export default function ProfileMenu({searchBarClicked}) {
                             endIcon={<KeyboardArrowDownIcon style={{ color: "rgb(118 104 104)" }} />}
                             style={{ backgroundColor: "#fff" }}
                         >
-                            <Avatar sx={{ height: "30px", width: "30px", mr: "5px" }} alt="User Image" src={UserImage} />
+                            <Avatar sx={{ height: "39px", width: "39px", mr: "5px" }} alt="User Image" src={UserImage} variant="square"/>
                             <p className="navbar-profile-name" style={{ color:"black", textTransform: "capitalize" }}>
                                 Primary User
                             </p>
@@ -87,7 +87,7 @@ export default function ProfileMenu({searchBarClicked}) {
                                 Primary User
                             </Typography> */}
                         </Button>
-                    </Tooltip>
+                    {/* </Tooltip> */}
                 </Box>
                 <Menu
                     anchorEl={anchorEl}

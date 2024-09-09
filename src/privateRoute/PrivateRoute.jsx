@@ -12,7 +12,7 @@ const drawerWidth = 240;
 export const PrivateRoute = () => {
   const dispatch = useDispatch();
   
-  const sideBartoggle =  useSelector((state) => state.infraValue.sidebarToggle);
+  const sideBartoggle =  useSelector((state) => state.appValue.sidebarToggle);
   // const [tabView, setTabView] = useState(false);  
     const toggleDrawer = () => {
         dispatch(updateSidebarToggle(!sideBartoggle))
@@ -49,12 +49,13 @@ export const PrivateRoute = () => {
             flexGrow: 1,
             p: {xs: "0px", sm: 0 },
             pt: 0,
+            height: " calc(100vh - 68px)",
             // mt: "64px",
             // // marginLeft: "20px",
             // marginBottom: "20px",
             // marginRight: "20px",
             // ml: {xs: "20px", sm: "249px", md: "269px",  }, // Adjust for sidebar width on large screens
-            m: {xs: "84px 20px 20px 20px", sm: "84px 20px 20px 20px ", md: "20px 20px 20px 269px",  }, // Adjust for sidebar width on large screens
+            m: {xs: "68px 0px 0px 0px ", sm: "68px 0px 0px 0px ", md: "0px 0px 0px 269px",  }, // Adjust for sidebar width on large screens
           }}
         >
           <Outlet />

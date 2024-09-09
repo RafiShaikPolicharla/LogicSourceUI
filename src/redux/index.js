@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const InfrastructureReducers = createSlice({
-  name: 'infrastructure',
+export const AppReducers = createSlice({
+  name: 'logisource_app',
   initialState: {
     value: 0,
     userData: {
@@ -44,6 +44,6 @@ export const {setUserState,
   updateLoading,
   updateSidebarToggle,
   updateCurrentSidebarTab
-} = InfrastructureReducers.actions;
+} = AppReducers.actions;
 
-export default InfrastructureReducers.reducer;
+export default AppReducers.reducer;

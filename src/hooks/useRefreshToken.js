@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserState } from '../redux/Infrastructure';
 
 const useRefreshToken = () => {
-    const auth = useSelector((state) => state.infraValue.createProfileData);
+    const auth = useSelector((state) => state.appValue.createProfileData);
 
     const dispatch = useDispatch();
 

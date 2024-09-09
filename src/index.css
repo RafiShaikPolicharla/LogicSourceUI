@@ -1,80 +1,20 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+:root {
+  font-family: Helvetica;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} 
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F5F7F6 !important;
 }
 
 .main-login-form {
@@ -85,36 +25,9 @@ body {
   height: 100vh;
 }
 
-.loginForm {
-  margin: 70px 50px;
-  padding: 32px 0px;
-}
-
 @media only screen and (max-width: 898px) {
   .LogicSourceHeroTitle {
     display: none !important;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .loginForm {
-    margin: 10px !important
-  }
-
-  .loginForm .loginFormContainer {
-    padding: 0px;
-    margin: 16px;
-  }
-}
-
-@media only screen and (min-width: 898px) {
-  .loginForm {
-    margin: 50px !important;
-    padding: 32px 0px;
-  }
-
-  .loginForm .loginFormContainer {
-    padding: 0px;
   }
 }
 
@@ -134,6 +47,9 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+  .main-login-form{
+    padding: 0px; 
+  }
   .navbar-search-hide {
     width: 0;
   }
@@ -184,8 +100,51 @@ body {
 
 .sidebar-icon-not-active {
   color: #04ABD7 !important;
+  outline: 1px solid white !important
 }
 
 .sidebar-multi-listItem:hover {
   color: #04ABD7 !important;
+  
+}
+
+.sidebar-listItem:hover .sidebar-icon svg rect {
+  stroke: white;
+}
+.sidebar-icon-active svg rect {
+  stroke: white;
+
+}
+
+
+.dropzone{
+  border: 2px dashed #009ee3;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: border-color 0.1s ease;
+}
+
+.dropzone-active{
+  border-color: #005ea6;
+}
+
+.dropzone-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon{
+  margin-bottom: 16px;
+}
+
+.MuiSlider-valueLabelLabel {
+  color: #fff !important;
+  background-color: #04ABD7 !important;
+}
+.MuiSlider-valueLabel {
+  color: #fff !important;
+  background-color: #04ABD7 !important;
+  padding: 2px !important
 }

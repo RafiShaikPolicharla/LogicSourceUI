@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import InfrastructureReducers from "./index";
-
+import AppReducers from "./index";
+import BenchamrkReducers from "./Benchmark"
 const rootReducer = combineReducers({
-    infraValue: InfrastructureReducers,
+    appValue: AppReducers,
+    benchmarkValue: BenchamrkReducers
 })
 
 export default rootReducer;

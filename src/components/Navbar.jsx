@@ -2,7 +2,7 @@ import { AppBar, Toolbar, IconButton, Box, TextField, InputAdornment } from '@mu
 import MenuIcon from '@mui/icons-material/Menu';
 // import { Paper, } from "@mui/material";
 // import styled from "styled-components";
-import brandLogo from "../assets/logicsource-image.png";
+import brandLogo from "../assets/logic_source_logo.png";
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
 import ProfileMenu from './ProfileMenu';
@@ -28,13 +28,14 @@ const Navbar = ({ handleDrawerToggle }) => {
     return (
         <Box>
             <AppBar  position="fixed" sx={{
+                boxShadow: {md:"none"},
                 padding: "0px 10px  !important",
                 // maxWidth: "1460px",
                 justifyContent: "center", height: "68px", backgroundColor: '#ffffff'
             }} >
                 <Toolbar className={`${searchBarClicked ? 'navbar-search-position-around' : 'navbar-search-positon-between'}`} disableGutters sx={{ justifyContent: "space-between" }}>
                     <Box className="navbar-brand-flex" sx={{ display: "flex", alignItems: "center", gap: {xs:"20px",md:"103px"  }}}>
-                        <Box className={`${searchBarClicked ? "navbar-brand-logo-container" : ""}`} sx={{ display: "flex", alignItems: "center" }}>
+                        <Box className={`${searchBarClicked ? "navbar-brand-logo-container" : ""}`} sx={{ display: "flex",marginLeft: {xs: "0px",md: "64px"}, alignItems: "center" }}>
                             <IconButton
                                 aria-label="open drawer"
                                 edge="start"
@@ -43,11 +44,15 @@ const Navbar = ({ handleDrawerToggle }) => {
                             >
                                 <MenuIcon sx={{ fontSize: '25px' }} />
                             </IconButton>
-                            <img
+                            <Box
+                                component={"img"}
                                 src={brandLogo}
                                 alt={"Brand-Logo"}
                                 loading="lazy"
-                                height="30px"
+                                sx={{
+                                    height:{xs: "30px",md:"48px"},
+                                    width:{md:"128px"}
+                                }}
                             />
                         </Box>
                         <TextField

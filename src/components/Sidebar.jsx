@@ -31,6 +31,16 @@ export const  CostDriversIcon = () => {
   </SvgIcon>
   )
 }
+export const  BenchmarkPricingIcon = (props) => {
+  return   (
+    <SvgIcon {...props} sx={{fontSize: "18px"}} viewBox="0 0 24 24">
+    <rect x="2" y="2" width="8" height="8" stroke="#04ABD7" strokeWidth="1.5" fill="none" />
+    <rect x="14" y="2" width="8" height="8" stroke="#04ABD7" strokeWidth="1.5" fill="none" />
+    <rect x="2" y="14" width="8" height="8" stroke="#04ABD7" strokeWidth="1.5" fill="none" />
+    <rect x="14" y="14" width="8" height="8" stroke="#04ABD7" strokeWidth="1.5" fill="none" />
+  </SvgIcon>
+  );
+}
 export const  DataCubeIcon = () => {
   return (
     <SvgIcon  viewBox="0 0 600 476.6" >
@@ -65,7 +75,7 @@ export const  DataCubeIcon = () => {
 export const DataPredictionIcon = () => {
   return (
       <>
-        <SvgIcon>
+        <SvgIcon >
         <svg
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -75,7 +85,7 @@ export const DataPredictionIcon = () => {
         >
             <path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4m6 14c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23V17m0-4.55c-1.3.95-3.58 1.55-6 1.55s-4.7-.6-6-1.55V9.64c1.47.83 3.61 1.36 6 1.36s4.53-.53 6-1.36v2.81M12 9C8.13 9 6 7.5 6 7s2.13-2 6-2 6 1.5 6 2-2.13 2-6 2z" />
         </svg>
-</SvgIcon>
+      </SvgIcon>
 
           {/* <img src={DATASTORE} alt="Data Store"></img> */}
       </>
@@ -83,53 +93,66 @@ export const DataPredictionIcon = () => {
 }
 const menu = [
   {
-    icon: <WidgetsOutlinedIcon color="blue"/>,
-    title: "Portfolio Overview",
-    to: '/portfolio',
+    icon: <BenchmarkPricingIcon color="blue"/>,
+    title: "Benchmark Pricing",
+    to: '/benchmark-pricing',
     items: [],
   },
   {
-    icon: <FilterNoneOutlinedIcon />,
-    title: "SKU Level PPV",
-    to: '/sku-level',
-    items: []
-  },
-  {
     icon: <DataPredictionIcon />,
-    title: "Data Predictions",
+    title: "Cost Driver Analysis",
     // to: "/data-predictions/benchmark-pricing",
-    childLinks: ["/data-predictions/benchmark-pricing", "/data-predictions/scenario-planning"],
+    childLinks: ["/cost-driver-analysis/cost-drivers"],
+    // childLinks: ["/cost-driver-analysis/cost-drivers", "/cost-driver-analysis/scenario-planning"],
     items : [
         {
-          title: "Benchmark Pricing",
-          to: "/data-predictions/benchmark-pricing"
-        },
-        {
-          title: "Scenario Planning",
-          to: "/data-predictions/scenario-planning"
+          title: "Cost Drivers",
+          to: "/cost-driver-analysis/cost-drivers"
         },
     ]
   },
-  {
-    icon: <CostDriversIcon />,
-    title: "Cost Drivers",
-    to: '/cost-drivers'
-  },
+  // {
+  //   icon: <FilterNoneOutlinedIcon />,
+  //   title: "SKU Level PPV",
+  //   to: '/sku-level',
+  //   items: []
+  // },
+  // {
+  //   icon: <DataPredictionIcon />,
+  //   title: "Data Predictions",
+  //   // to: "/data-predictions/benchmark-pricing",
+  //   childLinks: ["/data-predictions/benchmark-pricing", "/data-predictions/scenario-planning"],
+  //   items : [
+  //       {
+  //         title: "Benchmark Pricing",
+  //         to: "/data-predictions/benchmark-pricing"
+  //       },
+  //       {
+  //         title: "Scenario Planning",
+  //         to: "/data-predictions/scenario-planning"
+  //       },
+  //   ]
+  // },
+  // {
+  //   icon: <CostDriversIcon />,
+  //   title: "Cost Drivers",
+  //   to: '/cost-drivers'
+  // },
   {
     icon: <DataCubeIcon />,
     title: "Data Cube",
     to: '/data-cube'
   },
-  {
-    icon: <SettingsOutlinedIcon />,
-    title: "Settings",
-    to: '/settings'
-  },
+  // {
+  //   icon: <SettingsOutlinedIcon />,
+  //   title: "Settings",
+  //   to: '/settings'
+  // },
 ];
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 270;
 
 function MultipleListItems() {
   return menu.map((item, key) => <MenuItem key={key} item={item} />);
@@ -141,7 +164,7 @@ const MenuItem = ({ item, lastItem }) => {
 };
 
 const SingleLevel = ({ item }) => {
-  const currentTab = useSelector((state) => state.infraValue.currentSidebarTab);
+  const currentTab = useSelector((state) => state.appValue.currentSidebarTab);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = (link) => {
@@ -153,7 +176,7 @@ const SingleLevel = ({ item }) => {
   };  
   return (
     <ListItem className="sidebar-listItem" sx={{backgroundColor: `${currentTab === item.to ? "#04ABD7" : "white"}`, color: `${currentTab === item.to ? "white": 'black'}`}} button onClick={() => handleClick(item.to)}>
-      <ListItemIcon className={"sidebar-icon"} sx={{color: `${currentTab === item.to ? "white": '#04ABD7'}`}}>{item.icon}</ListItemIcon>
+      <ListItemIcon className={`sidebar-icon ${currentTab === item.to ? "sidebar-icon-active" :""}`} sx={{ minWidth: '30px',color: `${currentTab === item.to ? "white": '#04ABD7'}`}}>{item.icon}</ListItemIcon>
       <ListItemText primary={item.title} />
     </ListItem>
   );
@@ -164,11 +187,9 @@ const MultiLevel = ({ item }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const currentTab = useSelector((state) => state.infraValue.currentSidebarTab);
+  const currentTab = useSelector((state) => state.appValue.currentSidebarTab);
   console.log({currentTab})
   const handleClick = (link) => {
-    console.log({link, item, currentTab})
-      console.log({a : link})
       if(link){
         dispatch(updateCurrentSidebarTab(link));
         navigate(link)
@@ -196,7 +217,7 @@ const MultiLevel = ({ item }) => {
         handleClose()
 
         }} sx={{backgroundColor: `${  item.childLinks.includes(currentTab) ? "#04ABD7" : "white"}`, color: `${item.childLinks.includes(currentTab) ? "white" : "black"}`}}>
-        <ListItemIcon className={"sidebar-icon"} sx={{color: `${item.childLinks.includes(currentTab) ? "white": '#04ABD7'}`}}>{item.icon}</ListItemIcon>
+        <ListItemIcon className={"sidebar-icon"} sx={{minWidth: '30px',color: `${item.childLinks.includes(currentTab) ? "white": '#04ABD7'}`}}>{item.icon}</ListItemIcon>
         <ListItemText primary={item.title} />
         {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </ListItem>
@@ -234,10 +255,11 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
         }}
         sx={{
           display: { sm: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box',  marginTop: "64px", width: drawerWidth },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', padding:{xs: "0px",md:"0px 16px"}, marginTop: "68px", width: drawerWidth },
         }}
         PaperProps={{
           sx: {
+            border: {md: "none"},
             backgroundColor: "#fff",
             color: "black",
           }
@@ -248,19 +270,21 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
       <Drawer
         variant="permanent"
         sx={{
+          
           marginTop: "64px",
           display: {xs:'none', sm: 'none', md: 'block' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box',  marginTop: "64px", width: drawerWidth },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', padding:{xs: "0px",md:"0px 16px"}, marginTop: "68px", width: drawerWidth },
         }}
         PaperProps={{
           sx: {
+            border: {md: "none"},
             backgroundColor: "#fff",
             color: "black",
           }
         }}
         open
       >
-                <MultipleListItems />
+        <MultipleListItems />
       </Drawer>
     </>
   );
@@ -282,7 +306,7 @@ export default Sidebar;
 // const Sidebar = () => {
 //   const dispatch = useDispatch();
 
-//   const sideBartoggle =  useSelector((state) => state.infraValue.sidebarToggle);
+//   const sideBartoggle =  useSelector((state) => state.appValue.sidebarToggle);
     
 //     const toggleDrawer = () => {
 //         dispatch(updateSidebarToggle(!sideBartoggle))

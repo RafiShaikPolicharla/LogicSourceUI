@@ -129,11 +129,11 @@ export const themeSettings = (mode) => {
   return {
     palette: {
       primary: {
-        main: '#000000',
+        main: '#04ABD7',
       },
       secondary: {
         light: '#000000',
-        main: '#E8963D',
+        main: '#04ABD7',
       },
       linearProgress: {
         main: '#1976d2',
@@ -154,7 +154,6 @@ export const themeSettings = (mode) => {
       },
       customBorder: {
         darkGrey: '#DBDBDB',
-
       },
       customBackground: {
         grey: '#DEDEDE',
@@ -314,35 +313,6 @@ export const themeSettings = (mode) => {
 //             },
 //           }),
 //     },
-//     typography: {
-//       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-//       fontSize: 12,
-//       h1: {
-//         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-//         fontSize: 40,
-//       },
-//       h2: {
-//         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-//         fontSize: 32,
-//       },
-//       h3: {
-//         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-//         fontSize: 24,
-//       },
-//       h4: {
-//         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-//         fontSize: 20,
-//       },
-//       h5: {
-//         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-//         fontSize: 16,
-//       },
-//       h6: {
-//         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-//         fontSize: 14,
-//       },
-//     },
-//     };
 // };
 
 // context for color mode
@@ -364,3 +334,13 @@ export const useMode = () => {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };
+
+// const StyledButton = withStyles({
+//   root: {
+//     backgroundColor: '#3c52b2',
+//     color: '#fff',
+//     '&:hover': {
+//       backgroundColor: '#fff',
+//       color: '#3c52b2',
+//   },
+// }})(Button);
