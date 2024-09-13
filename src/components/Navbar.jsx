@@ -1,9 +1,7 @@
 import { AppBar, Toolbar, IconButton, Box, TextField, InputAdornment } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-// import { Paper, } from "@mui/material";
-// import styled from "styled-components";
 import brandLogo from "../assets/logic_source_logo.png";
-import SearchIcon from '@mui/icons-material/Search';
+// import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
 import ProfileMenu from './ProfileMenu';
 
@@ -21,10 +19,10 @@ const Navbar = ({ handleDrawerToggle }) => {
         }
     }, [searchBarClicked])
 
-    const handleSearchIconClicked = () => {
-        setSearchBarClicked(true)
+    // const handleSearchIconClicked = () => {
+    //     setSearchBarClicked(true)
 
-    }
+    // }
     return (
         <Box>
             <AppBar  position="fixed" sx={{
@@ -55,7 +53,7 @@ const Navbar = ({ handleDrawerToggle }) => {
                                 }}
                             />
                         </Box>
-                        <TextField
+                        {/* <TextField
                             className={`${searchBarClicked ? 'navbar-search-clicked"' : 'navbar-search-hide'}`}
                             id="input-with-icon-textfield"
                             placeholder='Search...'
@@ -78,7 +76,7 @@ const Navbar = ({ handleDrawerToggle }) => {
                             }}
                             variant="standard"
                             autoFocus={searchBarClicked ? true : false}
-                        />
+                        /> */}
                     </Box>
                     <ProfileMenu searchBarClicked={searchBarClicked} />
                 </Toolbar>

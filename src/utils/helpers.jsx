@@ -5,7 +5,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
-const drawerWidth = 240;
+export const drawerWidth = 270;
 
 export const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',

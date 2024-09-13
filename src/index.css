@@ -127,6 +127,7 @@ body {
 
 .dropzone-active{
   border-color: #005ea6;
+  background-color: #e6e3f5;
 }
 
 .dropzone-content{
@@ -147,4 +148,16 @@ body {
   color: #fff !important;
   background-color: #04ABD7 !important;
   padding: 2px !important
+}
+
+
+.data-grid-headers{
+  background-color: rgb(243, 248, 255);
+  /* padding:10px !important;
+  height: 10px !important */
+
+}
+
+.MuiTooltip-popper{
+  display: none;
 }

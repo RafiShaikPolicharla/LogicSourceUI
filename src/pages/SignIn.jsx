@@ -100,11 +100,6 @@ export default function SignInSide() {
                 dispatch(setUserState(userData));
                 setUserName('');
                 setPwd('');
-                // if (userData.role === "admin") {
-                //     dispatch(updateActiveTab("manageProfile"));
-                // } else {
-                //     dispatch(updateActiveTab("/portfolio"));
-                // }
                 saveCreditionalsForRememeber()
                 navigate("/");
             } catch (err) {
@@ -326,7 +321,7 @@ export default function SignInSide() {
                                 disabled={disableButton}
                                 color='primary'
                                 sx={{backgroundColor: "#04ABD7", borderRadius: 0}}
-                                onClick={() => dispatch(updateCurrentSidebarTab('/benchmark-pricing'))}
+                                onClick={() => dispatch(updateCurrentSidebarTab('/price-analysis/project-benchmarking'))}
                                 padding={0}
                             >
                                 Log In

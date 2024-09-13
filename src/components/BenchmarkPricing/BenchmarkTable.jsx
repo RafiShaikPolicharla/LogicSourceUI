@@ -12,6 +12,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import { Box } from '@mui/material';
 import FILTER_SVG from "../../assets/svg-icons/filter-main-color.svg";
 import { useSelector } from 'react-redux';
+import localize from "../../assets/lang/en";
 
 const useStyles = makeStyles({
     table: {
@@ -21,137 +22,19 @@ const useStyles = makeStyles({
         }
     }
 });
-const columns = [
-    { id: 'l5_category', label: "L5(Category)" },
-    { id: 'sku_item_original', label: 'SKU/Item Original' },
-    {
-        id: 'sku_normalized_name',
-        label: 'SKU Normalized Name',
-    },
-    {
-        id: 'unit_price',
-        label: 'Unit Price',
-    },
-    {
-        id: 'scenario_price',
-        label: 'Scenario Price',
-    },
-    {
-        id: 'min_price',
-        label: 'Min Price',
-    },
-    {
-        id: '25th_price',
-        label: '25th Price',
-    },
-    {
-        id: 'avg_price',
-        label: 'Avg Price',
-    },
-    {
-        id: '75th_price',
-        label: '75th Price',
-    },
-    {
-        id: 'max_price',
-        label: 'Max Price',
-    },
-];
 
-
-const rows = [
-    {
-        "l5_category": "Identification",
-        sku_item_original: "ssn trace",
-        sku_normalized_name: "SSN Trace",
-        unit_price: "$0.95",
-        scenario_price: "$1.00",
-        min_price: "$0.08",
-        "25th_price": "$0.78",
-        avg_price: "$1.00",
-        "75th_price": "$1.70",
-        max_price: "$9.00",
-    },
-    {
-        "l5_category": "Criminal History",
-        sku_item_original: "felony and misdemeanor (up to two indexes at single courthouse)",
-        sku_normalized_name: "Criminal Felony & Misdemeanor - 7 years - 1 County",
-        unit_price: "$6.10",
-        scenario_price: "$6.5",
-        min_price: "$4.50",
-        "25th_price": "$5.50",
-        avg_price: "$5.93",
-        "75th_price": "$7.50",
-        max_price: "$9.50",
-    },
-    {
-        "l5_category": "Criminal History",
-        sku_item_original: "national criminal record file- adjudicated (1 name)",
-        sku_normalized_name: "Federal Criminal Search - Per District - 7 Years",
-        unit_price: "$4.10",
-        scenario_price: "$4.25",
-        min_price: "$2.00",
-        "25th_price": "$3.50",
-        avg_price: "$4.25",
-        "75th_price": "$5.50",
-        max_price: "$9.75",
-    },
-    {
-        "l5_category": "Ris & Compliance",
-        sku_item_original: "motor vehicle check (driving record)",
-        sku_normalized_name: "Motor Vehicle Report",
-        unit_price: "$1.95",
-        scenario_price: "$2.00",
-        min_price: "$0.70",
-        "25th_price": "$1.25",
-        avg_price: "$1.76",
-        "75th_price": "$2.00",
-        max_price: "$2.75",
-    },
-    {
-        "l5_category": "Verificaiton Services",
-        sku_item_original: "education verification (per institution)",
-        sku_normalized_name: "Education Verification Per School",
-        unit_price: "$5.60",
-        scenario_price: "$6.25",
-        min_price: "$5.60",
-        "25th_price": "$6.25",
-        avg_price: "$6.90",
-        "75th_price": "$7.05",
-        max_price: "$11.00",
-    },
-    {
-        "l5_category": "Verfication Services",
-        sku_item_original: "employment verification (standard handling is 3 attempts over 3 days)",
-        sku_normalized_name: "Employment Verification - 7 Year - Per Employer",
-        unit_price: "$5.60",
-        scenario_price: "$6.00",
-        min_price: "$5.40",
-        "25th_price": "$6.00",
-        avg_price: "$6.80",
-        "75th_price": "$7.20",
-        max_price: "$8.00",
-    },
-    {
-        "l5_category": "Adverse Action Fulfillment",
-        sku_item_original: "adverse action letter mailing service-per letter (u.s. based custom) ",
-        sku_normalized_name: "Ancillary Services",
-        unit_price: "$4.25",
-        scenario_price: "$5.00",
-        min_price: "$1.00",
-        "25th_price": "$2.00",
-        avg_price: "$3.50",
-        "75th_price": "$5.00",
-        max_price: "$7.00",
-    },
-
-];
 
 export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const classes = useStyles();
     const showScenarioPrice = useSelector((state) => state.benchmarkValue.showScenarioPrice);
+    const scenarioNameSelected = useSelector((state) => state.benchmarkValue.scenarioNameSelected);
+    const tableData = useSelector((state) => state.benchmarkValue.data.tableData) || [];
+    const rows = tableData?.data?.length > 0 ? tableData?.data : [...Array(10).keys()];
+
+    const columns = localize.projectBenchmarking.columnData;
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -168,23 +51,25 @@ export default function ColumnGroupingTable() {
                 <Table className={classes.table} aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left" colSpan={5}>
+                            {/* <TableCell align="left" colSpan={5}>
                                 <div style={{ color: "#020202", fontSize: "14px" }}>Price Benchmark </div>
                                 <span style={{ color: "rgb(174, 173, 175)" }}>supplier</span>
-                            </TableCell>
-                            <TableCell align="left" colSpan={5}>
+                            </TableCell> */}
+                            <TableCell align="left" colSpan={10}>
                                 <span style={{ color: "#020202", fontSize: "14px", fontWeight: 700 }}>All Suppliers</span>
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell align="left" colSpan={5}>
                                 <span style={{ color: "#020202", fontSize: "14px" }}>File : </span>
-                                <span style={{ color: "#020202", fontSize: "14px", fontWeight: 700 }}>First advantage - u.s.amendment_executed 4-28-23</span>
+                                <span style={{ color: "#020202", fontSize: "14px", fontWeight: 700 }}>{tableData.file_name || ""}</span>
+                                {/* First advantage - u.s.amendment_executed 4-28-23 */}
 
                             </TableCell>
                             <TableCell align="left" colSpan={5}>
-                                <span style={{ color: "#020202", fontSize: "14px" }}>All Agreements</span>
+                                <span style={{ color: "#020202", fontSize: "14px", fontWeight: 700 }}>All Price Sources</span>
                             </TableCell>
+
                         </TableRow>
                         <TableRow>
                             {columns.map((column, index) => (
@@ -194,17 +79,27 @@ export default function ColumnGroupingTable() {
                                     style={{ top: 57, whiteSpace: 'nowrap', minWidth: column.minWidth, backgroundColor: '#F3F8FF', fontSize: "14px", fontWeight: "700", color: "#020202" }}
                                 >
                                     {
-                                        index === 1 || index === 2 ?
+                                        index === 4 ?
                                             <>
-                                                <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }} >
-                                                    {column.label} <img style={{ cursor: "pointer" }} src={FILTER_SVG} alt="Filter Icon" width={20} height={20} />
-                                                </Box>
+                                                {
+                                                    scenarioNameSelected!=="" ? scenarioNameSelected : "Scenario Price"
+                                                }
                                             </>
                                             :
-                                            <>
-                                                {column.label}
-                                            </>
+                                            (
+                                                index === 0 || index === 1 || index === 2 ?
+                                                    <>
+                                                        <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }} >
+                                                            {column.label} <img style={{ cursor: "pointer" }} src={FILTER_SVG} alt="Filter Icon" width={20} height={20} />
+                                                        </Box>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        {column.label}
+                                                    </>
+                                            )
                                     }
+
                                 </TableCell>
                             ))}
                         </TableRow>
@@ -218,16 +113,16 @@ export default function ColumnGroupingTable() {
                                         {columns.map((column, index) => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell key={column.id} align={column.align} sx={{ color: "#020202", fontSize: "14px", background: `${index === 0 || index === 3 ? "#F3F8FF" : ''}` }}>
+                                                <TableCell key={column.id} align={column.align} sx={{ color: "#020202", fontSize: "14px", background: `${index === 4 ? "#E9F2E5" : (index === 0 || index === 3 ? "#F3F8FF" : '')}` }}>
                                                     {
                                                         index === 4 ?
                                                             (
-                                                                !showScenarioPrice ? <>{value}</> : ""
+                                                                scenarioNameSelected ? <>{value}</> : ""
                                                             ) :
                                                             (
-                                                                index === 1 ?
+                                                                (tableData?.data?.length > 0 && index === 1) ?
                                                                     <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                                                                        <RemoveRedEyeOutlinedIcon sx={{ color: '#04ABD7', cursor: "pointer" }} /> {value}
+                                                                        <RemoveRedEyeOutlinedIcon sx={{ fontSize: "16px", color: '#04ABD7', cursor: "pointer" }} /> {value}
                                                                     </Box> :
                                                                     value
                                                             )

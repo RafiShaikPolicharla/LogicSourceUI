@@ -10,8 +10,6 @@ export const AppReducers = createSlice({
       accessToken: null,
       refreshToken: null,
     },
-    activeTab: "",
-    activeSubTab: "",
     loading: false, 
     sidebarToggle: false,
     currentSidebarTab: ""
@@ -19,12 +17,6 @@ export const AppReducers = createSlice({
   reducers: {
     setUserState : (state, action) => {
       state.user = action.payload;
-    },
-    updateActiveTab : (state, action) => {
-      state.activeTab = action.payload;
-    },
-    updateActiveSubTab : (state, action) => {
-      state.activeSubTab = action.payload;
     },
     updateLoading : (state, action) => {
       state.loading = action.payload;
@@ -38,9 +30,8 @@ export const AppReducers = createSlice({
   },
 });
 
-export const {setUserState,
-  updateActiveTab, 
-  updateActiveSubTab,
+export const {
+  setUserState,
   updateLoading,
   updateSidebarToggle,
   updateCurrentSidebarTab

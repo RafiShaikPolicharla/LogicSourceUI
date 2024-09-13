@@ -1,25 +1,32 @@
 import { lazy } from 'react'
 
 const PortfoliOverview = lazy(() => import('./PortfolioOverview'));
-const SkuLevel = lazy(() => import('./SkuLevel'));
-const DataPredictions = lazy(() => import('./DataPredictions'));
 const BenchmarkPricing = lazy(() => import('./BenchmarkPricing'));
-const ScenarioPlanning = lazy(() => import('./ScenarioPlanning'));
-const CostDrivers = lazy(() => import('./CostDrivers'));
-const DataCube = lazy(() => import('./DataCube'));
-const Settings = lazy(() => import('./Settings'));
 const PrivateRoute = lazy(() => import('../privateRoute/PrivateRoute'));
 const PageNotFound = lazy(() => import('./PageNotFound'));
+const ProjectBenchmarking = lazy(()=> import('./ProjectBenchmarking'));
+const CategoryAnalysis = lazy(()=> import('./CategoryAnalysis'));
+const PriceDetail = lazy(()=> import('./PriceDetail'));
+const ImportFiles = lazy(()=> import('./ImportFiles'));
+const ClientMaintenance = lazy(()=> import('./ClientMaintenance'));
+const SupplierMaintenance = lazy(()=> import('./SupplierMaintenance'));
+const ProductServiceMaintenance = lazy(()=> import('./ProductServiceMaintenance'));
+const Taxonomy = lazy(()=> import('./Taxonomy'));
+const CategoryCostDrivers = lazy(()=> import('./CategoryCostDrivers'));
+
 
 export {
+    ProjectBenchmarking,
+    CategoryAnalysis,
+    PriceDetail,
+    ImportFiles,
+    ClientMaintenance,
+    SupplierMaintenance,
+    ProductServiceMaintenance,
+    Taxonomy,
+    CategoryCostDrivers,
     PortfoliOverview,
-    SkuLevel,
-    DataPredictions,
     BenchmarkPricing,
-    ScenarioPlanning,
-    CostDrivers,
-    DataCube,
     PrivateRoute,
-    Settings,
     PageNotFound,
 }

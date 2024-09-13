@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFilterBtn } from '../../redux/Benchmark';
+import { resetFilterData, updateFilterBtn, updateFiltersData } from '../../redux/Benchmark';
 import { Autocomplete, Button, Checkbox, FormControl, InputLabel, MenuItem, Select, Slider, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
@@ -10,42 +10,33 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
+const dropdownOptions = [
+    { title: 'Supplier 1',},
+    { title: 'Supplier 2' },
+    { title: 'Supplier 3' },
 ]
 
 
 export default function Filters() {
     const filterBtn = useSelector((state) => state.benchmarkValue.filterBtn);
+    const filtersData = useSelector((state) => state.benchmarkValue.filtersData);
     const dispatch = useDispatch();
-    // const [formData, setFormaData]
-    const [skulineItem, setSkuLineItem] = useState('');
-    const [pricingSourceType, setPricingSourceType] = useState('');
-    const [date, setDate] = useState('');
-    const [supplier, setSupplier] = useState([]);
-    const [client, setClient] = useState('');
-    const [clientSpend, setClientSpend] = useState([1, 4]);
-    const [clientIndustry, setClientIndustry] = useState('');
-    const [contractDuration, setContractDuration] = useState('');
 
 
-    const handleClientSpendChange = (event, newValue) => setClientSpend(newValue);
+    const handleClientSpendChange = (event, newValue) => {
+        dispatch(updateFiltersData({...filtersData, clientSpend:  newValue}))
+    };
 
     function valuetext(value) {
         return `${value}mn`;
     }
 
     const resetFormInputFields = ()=> {
-        setSkuLineItem("");
-        setPricingSourceType("");
-        setDate("");
-        setSupplier([]);
-        setClient('');
-        setClientSpend([1,4]);
-        setClientIndustry('');
-        setContractDuration("");
+        dispatch(resetFilterData());
+    }
+
+    const handleChange = (event) => {
+        dispatch(updateFiltersData({...filtersData, [event.target.name]: event.target.value}))
     }
     const marks = [
         {
@@ -113,8 +104,9 @@ export default function Filters() {
                                 }}
                                 labelId="demo-select-small-label"
                                 id="demo-select-small"
-                                value={skulineItem}
-                                onChange={e => setSkuLineItem(e.target.value)}
+                                value={filtersData.skulineItem}
+                                name='skulineItem'
+                                onChange={handleChange}
                             >
                                 <MenuItem value={10}>Ten</MenuItem>
                                 <MenuItem value={20}>Twenty</MenuItem>
@@ -128,7 +120,7 @@ export default function Filters() {
                             <Select
                                 sx={{
                                     background: "#F2F4F8",
-                                    borderRadius: '0px'
+                                    borderRadius: '0px !important'
                                 }}
                                 displayEmpty
                                 renderValue={(value) => {
@@ -139,8 +131,9 @@ export default function Filters() {
                                 }}
                                 labelId="demo-select-small-label"
                                 id="demo-select-small"
-                                value={pricingSourceType}
-                                onChange={e => setPricingSourceType(e.target.value)}
+                                value={filtersData.pricingSourceType}
+                                name='pricingSourceType'
+                                onChange={handleChange}
                             >
                                 <MenuItem value={10}>Ten</MenuItem>
                                 <MenuItem value={20}>Twenty</MenuItem>
@@ -164,8 +157,9 @@ export default function Filters() {
                                 }}
                                 labelId="demo-select-small-label"
                                 id="demo-select-small"
-                                value={date}
-                                onChange={e => setDate(e.target.value)}
+                                value={filtersData.date}
+                                name='data'
+                                onChange={handleChange}
                             >
                                 <MenuItem value={10}>Ten</MenuItem>
                                 <MenuItem value={20}>Twenty</MenuItem>
@@ -175,15 +169,13 @@ export default function Filters() {
 
                         <InputLabel>Supplier</InputLabel>
                         <Autocomplete
-                            value={supplier}
+                            value={filtersData.supplier}
+                            name='supplier'
                             fullWidth margin="none" size="small"
-                            onChange={(e, value) => {
-                                console.log({ e, value });
-                                setSupplier(value)
-                            }}
+                            onChange={handleChange}
                             multiple
                             id="checkboxes-tags-demo"
-                            options={top100Films}
+                            options={dropdownOptions}
                             disableCloseOnSelect
                             getOptionLabel={(option) => option.title}
                             renderOption={(props, option, { selected }) => {
@@ -229,7 +221,8 @@ export default function Filters() {
                         <InputLabel>Client Spend</InputLabel>
                         <FormControl fullWidth margin="none" sx={{ marginBottom: "20px" }} size="small">
                             <Slider
-                                value={clientSpend}
+                                value={filtersData.clientSpend}
+                                name='clientSpend'
                                 onChange={handleClientSpendChange}
                                 min={0}
                                 max={5}
@@ -256,8 +249,9 @@ export default function Filters() {
                                 }}
                                 labelId="demo-select-small-label"
                                 id="demo-select-small"
-                                value={client}
-                                onChange={e => setClient(e.target.value)}
+                                value={filtersData.client}
+                                name='client'
+                                onChange={handleChange}
                             >
 
                                 <MenuItem value={10}>Ten</MenuItem>
@@ -282,8 +276,9 @@ export default function Filters() {
                                 }}
                                 labelId="demo-select-small-label"
                                 id="demo-select-small"
-                                value={clientIndustry}
-                                onChange={e => setClientIndustry(e.target.value)}
+                                value={filtersData.clientIndustry}
+                                name='clientIndustry'
+                                onChange={handleChange}
                             >
 
                                 <MenuItem value={10}>Ten</MenuItem>
@@ -308,8 +303,9 @@ export default function Filters() {
                                 }}
                                 labelId="demo-select-small-label"
                                 id="demo-select-small"
-                                value={contractDuration}
-                                onChange={e => setContractDuration(e.target.value)}
+                                value={filtersData.contractDuration}
+                                name='contractDuration'
+                                onChange={handleChange}
                             >
 
                                 <MenuItem value={10}>Ten</MenuItem>
